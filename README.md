@@ -30,8 +30,12 @@ automations — the framework's skills/systems/templates/agents mount in by syml
      ln -s "$(pwd)/$s" ~/.claude/skills/"$(basename "$s")"
    done
    ```
-6. Add your first project: copy `templates/project.md` into `projects/<name>.md`, fill it
-   in, add a row to `projects/_index.md`.
+6. In Claude Code, run the `bootstrap-instance` skill
+   (`meta-os/skills/bootstrap-instance/SKILL.md`) — a one-time onboarding conversation
+   that asks you to choose a backlog/tracking model (none / local JSON / Jira-integrated),
+   registers your first project, and optionally wires up its GitHub repo. Or do it by
+   hand: copy `templates/project.md` into `projects/<name>.md`, fill it in, add a row to
+   `projects/_index.md`.
 
 ## What's pre-wired
 
