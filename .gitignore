@@ -1,0 +1,9 @@
+# Obsidian local workspace state — not shared
+.obsidian/workspace*
+.obsidian/cache
+
+# Heartbeat / automation run log — machine-local operational data, not canon
+automations/runs.jsonl
+
+# meta-os-dashboard instance config, if you keep it pointed here
+instance.config.json
