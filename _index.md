@@ -18,7 +18,7 @@ default, or a symlinked sibling checkout in developer mode).
 - **Layer 1 — Skills & automation** → [[skills/_index|skills/]] · [[automations/_index|automations/]]
 - **Layer 2 — Memory** → [[memory/_index|memory/]] (`raw → wiki → output`)
 - **Layer 3 — Interface** → the Obsidian graph (open the graph view); optionally, the
-  [meta-os-dashboard](https://github.com/mova77/meta-os-dashboard) observability app
+  [meta-os-dashboard](https://github.com/meta-agentic/meta-os-dashboard) observability app
 
 ## Registries
 

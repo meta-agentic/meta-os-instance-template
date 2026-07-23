@@ -1,7 +1,7 @@
 # meta-os instance template
 
 A ready-to-use skeleton for bootstrapping your own private **Agentic OS instance** on top
-of the public [meta-os](https://github.com/mova77/meta-os) framework. This is the
+of the public [meta-os](https://github.com/meta-agentic/meta-os) framework. This is the
 *instance* side of the framework/instance split: your project registry, memory, and
 automations — the framework arrives as the `.meta-os` git submodule, mounted by
 per-folder symlinks. **One clone and you're running.**
@@ -9,7 +9,7 @@ per-folder symlinks. **One clone and you're running.**
 ## Use this template
 
 1. Click **Use this template → Create a new repository** above (or `gh repo create
-   <you>/<instance-name> --template mova77/meta-os-instance-template --private`).
+   <you>/<instance-name> --template meta-agentic/meta-os-instance-template --private`).
    **Keep the new repo private** — this is where your real, non-public data will live.
 2. Clone it — one command, nothing else to arrange:
    ```bash
@@ -104,7 +104,7 @@ scripts/framework-mode.sh submodule   # back to the pinned .meta-os/*
 
 ## Optional: the dashboard
 
-[meta-os-dashboard](https://github.com/mova77/meta-os-dashboard) is a layer-3
+[meta-os-dashboard](https://github.com/meta-agentic/meta-os-dashboard) is a layer-3
 observability app that reads this instance's markdown/JSON straight off disk — sprint
 lanes, a live knowledge graph, the memory promotion pipeline, ontology linting, and more.
 Point its `instance.config.json` at this repo's path once you have real data flowing.

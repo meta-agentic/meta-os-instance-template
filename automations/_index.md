@@ -15,11 +15,11 @@ hook, session start, file change).
 | Graph refresh | file change / pre-sprint | — | [[skills/graphify/SKILL\|graphify]] `--update` / `--watch` | candidate |
 | Session memory import | session start | — | [[skills/hooks-automation/SKILL\|hooks-automation]] | candidate |
 | Post-edit format/verify | git hook / post-edit | — | [[skills/hooks-automation/SKILL\|hooks-automation]], [[skills/verification-quality/SKILL\|verification-quality]] | candidate |
-| OS heartbeat | schedule (daily) | @daily | [meta-os-dashboard](https://github.com/mova77/meta-os-dashboard) `scripts/heartbeat.mjs` — lint + stale-raw + never-run checks → files a [[templates/heartbeat\|heartbeat]] note to `memory/raw/` | candidate |
+| OS heartbeat | schedule (daily) | @daily | [meta-os-dashboard](https://github.com/meta-agentic/meta-os-dashboard) `scripts/heartbeat.mjs` — lint + stale-raw + never-run checks → files a [[templates/heartbeat\|heartbeat]] note to `memory/raw/` | candidate |
 
 Executions append one JSON line to `automations/runs.jsonl`
 (`{"automation": "<table name>", "ts": "<ISO-8601>", "outcome": "ok|fail", "note": "…"}`);
-the [meta-os-dashboard](https://github.com/mova77/meta-os-dashboard) derives last-run from
+the [meta-os-dashboard](https://github.com/meta-agentic/meta-os-dashboard) derives last-run from
 it (see [[systems/ontology.yaml|ontology.yaml]]'s `automations:` contract).
 
 ## Two kinds
