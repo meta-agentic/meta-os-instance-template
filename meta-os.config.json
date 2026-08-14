@@ -1,0 +1,54 @@
+{
+  "$schema": "./.meta-os/systems/meta-os.config.schema.json",
+
+  "_README": [
+    "INSTANCE ESTATE CONFIG — your estate's knowledge, private to this repo.",
+    "",
+    "This is the middle of three levels (see .meta-os/systems/config.md):",
+    "  framework  — .meta-os/systems/meta-os.config.schema.json : valid keys + defaults, ZERO values, public",
+    "  instance   — THIS FILE, at the instance root beside CLAUDE.md : estate knowledge, private",
+    "  deployment — the dashboard's instance.config.json : where the instance is, auth, CORS, dataDir",
+    "",
+    "Keeping estate knowledge here (not in the dashboard's config) is what lets a skill or",
+    "a sync script read your estate with the dashboard uninstalled.",
+    "",
+    "Every key is OPTIONAL. Delete this file entirely and you get default behaviour:",
+    "the instance's own memory/{raw,wiki,output} as the sole canon root, plus vaults/* as",
+    "federated mounts. Nothing here is required to start.",
+    "",
+    "Replace the ${...} placeholders below with your own paths, or delete what you don't use.",
+    "A deployment may override any of these keys; this file supplies the defaults."
+  ],
+
+  "vars": {
+    "_comment": "Reusable prefixes. ${name} expands in any value here and in a projects/*.md 'path:', so moving your checkout is a one-line change.",
+    "estate": "${HOME}/code/your-org"
+  },
+
+  "backlogs": [
+    {
+      "_comment": "One entry per space/project you track. 'path' is the space directory in a per-item backlog; a path ending in .json reads a legacy pre-built backlog document instead.",
+      "space": "abc",
+      "path": "${estate}/vault/abc"
+    }
+  ],
+
+  "memory": {
+    "_comment": "OMIT this whole block for the default topology. Declare it only when memory lives somewhere other than the instance's own memory/ directory.",
+    "roots": [
+      {
+        "_comment": "Canon roots ARE the raw->wiki->output pipeline — their notes count as promotable. layout: flat | tier/project | project/tier. Use project/tier when the root is federated one-symlink-per-project.",
+        "label": "instance",
+        "path": "${estate}/your-instance/memory",
+        "layout": "flat"
+      }
+    ],
+    "federated": [
+      {
+        "_comment": "Federated mounts are surfaced for navigation and context but NEVER counted as canon. A dangling path is skipped and reported, never fatal.",
+        "label": "some-project",
+        "path": "${estate}/some-project/docs"
+      }
+    ]
+  }
+}
