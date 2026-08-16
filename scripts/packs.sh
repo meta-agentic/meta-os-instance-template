@@ -97,14 +97,28 @@ manifest_config() { # <pack> <key> → configured value, empty if unset
     incfg && $1 == k { $1=""; sub(/^ */,""); gsub(/"/,""); print; exit }
   ' "$MANIFEST"
 }
-pack_yaml_field() { # <pack> <key> <default|one_of> → value from the pack's pack.yaml inline map
+pack_yaml_field() { # <pack> <key> <default|one_of> → value from the pack's pack.yaml
+  # Two manifest shapes are accepted, because the contract changed under the packs:
+  #   inline map   key: { default: x, one_of: a | b }      ← the original shape
+  #   block        key:                                    ← what pack.schema.json
+  #                  default: x                              requires today (a `doc:`
+  #                  one_of: a | b                            with commas cannot live
+  #                  doc: "…"                                 in a comma-split inline map)
+  # Every shipped first-party pack now uses the block form; reading only the inline form
+  # resolved every default to empty AND skipped enum validation silently.
   local f=".packs/$1/pack.yaml"; [ -f "$f" ] || return 0
   awk -v k="  $2:" -v want="$3" '
-    index($0,k)==1 {
+    function emit(v) { gsub(/[][]/,"",v); sub(/^ +/,"",v); sub(/ +$/,"",v)
+                       gsub(/ *\| */,"|",v); sub(/^"/,"",v); sub(/"$/,"",v); print v; exit }
+    index($0,k)==1 && index($0,"{")>0 {                       # inline map
       line=$0; sub(/[^{]*{/,"",line); sub(/}.*/,"",line)
       n=split(line,pairs,","); for(i=1;i<=n;i++){ split(pairs[i],kv,":")
         g=kv[1]; sub(/^ */,"",g); sub(/ *$/,"",g)
-        if(g==want){ v=substr(pairs[i],index(pairs[i],":")+1); gsub(/[][ ]/,"",v); print v; exit } } }
+        if(g==want){ emit(substr(pairs[i],index(pairs[i],":")+1)) } }
+      next }
+    index($0,k)==1 { inkey=1; next }                          # block form starts
+    inkey && /^  *[a-zA-Z_-]+:/ && !/^    / { inkey=0 }       # next key at key level ends it
+    inkey && index($0,"    " want ":")==1 { emit(substr($0,index($0,":")+1)) }
   ' "$f"
 }
 cmd_config() {
