@@ -7,3 +7,8 @@ automations/runs.jsonl
 
 # meta-os-dashboard instance config, if you keep it pointed here
 instance.config.json
+
+# ruflo / claude-flow local state — written per machine when the tooling runs here, not part of the template
+.claude-flow/
+.claude/proven-config.json
+.claude/.proven-config-version
