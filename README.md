@@ -1,5 +1,14 @@
 # meta-os instance template
 
+> **Retired — this template now lives inside the framework.** The instance scaffold is
+> [`instance-template/`](https://github.com/meta-agentic/meta-os/tree/main/instance-template)
+> in [meta-os](https://github.com/meta-agentic/meta-os), and a fresh instance is a clone of
+> that repository: `git clone https://github.com/meta-agentic/meta-os.git my-os && cd my-os
+> && scripts/bootstrap.sh`. One repository, two owners split by path; the framework updates
+> in place with `scripts/upgrade.sh`. Details: meta-os `systems/distribution.md`. This
+> repository is kept read-only for the instances that were created from it; their migration
+> path is documented in the framework. Nothing here is maintained any more.
+
 A ready-to-use skeleton for bootstrapping your own private **Agentic OS instance** on top
 of the public [meta-os](https://github.com/meta-agentic/meta-os) framework. This is the
 *instance* side of the framework/instance split: your project registry, memory, and
